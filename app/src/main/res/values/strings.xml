@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mot à Mot</string>
+    <string name="btn_start_text">Démarrer une partie</string>
+    <string name="btn_validate">Valider</string>
+</resources>
