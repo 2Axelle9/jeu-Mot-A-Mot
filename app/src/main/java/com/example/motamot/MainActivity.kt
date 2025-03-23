@@ -1,13 +1,22 @@
 package com.example.motamot
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
+import java.nio.file.Files.size
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,16 +49,53 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Cette fonction initialise la grille en définissant les champs editText de chaque ligne dans une liste
+    // Cette fonction initialise la grille en définissant les champs editText de chaque ligne (= tentative) dans une liste
     private fun setupEditTexts() {
+        // Initialisation de la grille d'EditText
         editTextGrid = listOf(
             listOf(findViewById(R.id.etA1Letter1), findViewById(R.id.etA1Letter2), findViewById(R.id.etA1Letter3), findViewById(R.id.etA1Letter4), findViewById(R.id.etA1Letter5)),
             listOf(findViewById(R.id.etA2Letter1), findViewById(R.id.etA2Letter2), findViewById(R.id.etA2Letter3), findViewById(R.id.etA2Letter4), findViewById(R.id.etA2Letter5)),
             listOf(findViewById(R.id.etA3Letter1), findViewById(R.id.etA3Letter2), findViewById(R.id.etA3Letter3), findViewById(R.id.etA3Letter4), findViewById(R.id.etA3Letter5)),
             listOf(findViewById(R.id.etA4Letter1), findViewById(R.id.etA4Letter2), findViewById(R.id.etA4Letter3), findViewById(R.id.etA4Letter4), findViewById(R.id.etA4Letter5)),
             listOf(findViewById(R.id.etA5Letter1), findViewById(R.id.etA5Letter2), findViewById(R.id.etA5Letter3), findViewById(R.id.etA5Letter4), findViewById(R.id.etA5Letter5)),
-            listOf(findViewById(R.id.etA6Letter1), findViewById(R.id.etA6Letter2), findViewById(R.id.etA6Letter3), findViewById(R.id.etA6Letter4), findViewById(R.id.etA6Letter5))
-        )
+            listOf(findViewById(R.id.etA6Letter1), findViewById(R.id.etA6Letter2), findViewById(R.id.etA6Letter3), findViewById(R.id.etA6Letter4), findViewById(R.id.etA6Letter5)))
+
+        // Initialiser le focus sur le premier EditText
+        editTextGrid[0][0].requestFocus()
+
+
+        // Ajout du TextWatcher pour chaque EditText
+        for (rowIndex in editTextGrid.indices) {
+            for (colIndex in editTextGrid[rowIndex].indices) {
+                val editText = editTextGrid[rowIndex][colIndex]
+                editText.addTextChangedListener(object : TextWatcher {
+
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                        // Implémentation vide
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        Log.e("axelle", "onTextChanged")
+                        // Si le texte est rempli (taille 1) et ce n'est pas le dernier champ de la ligne
+                        if (s.length == 1) {
+                            // Déplace le focus vers le champ suivant après un léger délai
+                            editTextGrid[rowIndex][colIndex + 1].post {
+                                editTextGrid[rowIndex][colIndex + 1].requestFocus()
+                            }
+                        }
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                        // Implémentation vide
+                    }
+                })
+            }
+        }
     }
 
 
