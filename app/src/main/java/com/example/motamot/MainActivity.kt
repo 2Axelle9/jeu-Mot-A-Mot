@@ -135,9 +135,9 @@ class MainActivity : AppCompatActivity() {
         for (i in feedback.indices) {
             val editText = editTextGrid[currentAttempt][i]
             when (feedback[i]) {
-                CharFeedback.CORRECT -> editText.setBackgroundResource(R.color.green)
-                CharFeedback.PRESENT -> editText.setBackgroundResource(R.color.yellow)
-                CharFeedback.ABSENT -> editText.setBackgroundResource(R.color.gray)
+                CharFeedback.CORRECT -> editText.setBackgroundResource(R.color.correct)
+                CharFeedback.PRESENT -> editText.setBackgroundResource(R.color.present)
+                CharFeedback.ABSENT -> editText.setBackgroundResource(R.color.absent)
             }
         }
     }
