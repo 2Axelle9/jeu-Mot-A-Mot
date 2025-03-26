@@ -4,10 +4,14 @@
     <string name="btn_validate">Valider</string>
     <string name="btn_rules">Règles du jeu</string>
     <string name="btn_back">Retour</string>
-    <string name="RulesTitle">Règles du jeu</string>
+    <string name="rulesTitle">Règles du jeu</string>
     <string name="rules">Devine un mot en proposant des lettres.\n\nTu as le droit à 6 tentatives.\n\nVert : lettre bien placée.\nRose : lettre présente mais mal placée.\nRien : lettre absente.\n\nEnchaîne les mots pour faire la plus longue suite possible.\n\nTon temps et ta meilleure suite sont enregistrés.\n\nSecoue ton téléphone pour passer directement au mot suivant.</string>
     <string name="creditsTitle">Crédits</string>
     <string name="credits">Ce jeu a été développé par\n\nAxelle HANNIER\n\n- 2025 -</string>
     <string name="btn_credits">Crédits</string>
+    <string name="result">Résultat</string>
+    <string name="secretWord">MOT SECRET</string>
+    <string name="btn_play">Jouer à nouveau</string>
+    <string name="btn_stop">Arrêter la partie</string>
 
 </resources>

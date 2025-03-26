@@ -1,5 +1,6 @@
 package com.example.motamot
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -119,13 +120,21 @@ class MainActivity : AppCompatActivity() {
         updateGridUI(feedback)
 
         // Vérifier si le mot est trouvé ou si la partie est terminée
-        if (gameLogic.isWordGuessed(guess)) {
-            Toast.makeText(this, "Bravo ! 🎉", Toast.LENGTH_LONG).show()
-            disableInputs()
-        } else if (gameLogic.isGameOver()) {
-            Toast.makeText(this, "Perdu ! Le mot était ${gameLogic.secretWord}", Toast.LENGTH_LONG).show()
-            disableInputs()
-        } else {
+
+        if (gameLogic.isWordGuessed(guess) || gameLogic.isGameOver()) {
+            val resultMessage: String = when {
+                gameLogic.isWordGuessed(guess) -> "Trouvé !"
+                gameLogic.isGameOver() -> "Dommage"
+                else -> "Erreur"
+            }
+            val intent = Intent(this, EndGameActivity::class.java).apply {
+                putExtra("resultMessage", resultMessage)
+                putExtra("secretWord", gameLogic.secretWord)
+            }
+            startActivity(intent)
+        }
+
+        else {
             currentAttempt++
         }
     }

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MotAMot"
         tools:targetApi="31">
         <activity
+            android:name=".EndGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreditsActivity"
             android:exported="false" />
         <activity

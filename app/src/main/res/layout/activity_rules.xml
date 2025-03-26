@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
-        android:text="@string/RulesTitle"
+        android:text="@string/rulesTitle"
         android:textColor="@color/dark_color"
         android:textSize="34sp"
         android:textStyle="bold"
