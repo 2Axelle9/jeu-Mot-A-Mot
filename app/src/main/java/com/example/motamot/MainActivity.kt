@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.preference.PreferenceManager
 import java.nio.file.Files.size
 
 
@@ -145,4 +146,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

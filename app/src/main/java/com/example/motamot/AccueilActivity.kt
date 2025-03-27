@@ -3,16 +3,21 @@ package com.example.motamot
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
+
+var bestScore : Int = 0
 
 class AccueilActivity : AppCompatActivity() {
 
     private lateinit var btnStart : Button
     private lateinit var btnRules : Button
     private lateinit var btnCredits : Button
+    private lateinit var tvBestScore : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,21 @@ class AccueilActivity : AppCompatActivity() {
         btnCredits.setOnClickListener {
             ouvrirCreditsActivity()
         }
+
+
+        // On cherchele fichier de préférence dans lequel la valeur de la plus longue suite de mot est stockée
+        val preferences = PreferenceManager.getDefaultSharedPreferences (this)
+        // extraire la valeur
+        val score = preferences. getString ("score", "")
+        // si sa valeur n'est pas égale à "" (qui est la valeur par défault)
+        if (!score. equals("")) {
+            // alors on initialise la variable bestWordSequence avec cette valeur
+            bestScore = score?.toInt()!!
+        } else {
+            bestScore = 0
+        }
+        tvBestScore = findViewById(R.id.tvBestScore)
+        tvBestScore.setText("Meilleure suite\n" + tvBestScore.toString() + " mots")
     }
 
     fun ouvrirMainActivity() {

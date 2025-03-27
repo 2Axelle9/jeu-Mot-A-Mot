@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
 
 class EndGameActivity : AppCompatActivity() {
 
@@ -107,5 +108,23 @@ class EndGameActivity : AppCompatActivity() {
             }
     }
 
+
+
+    /************************************************/
+    /*******Sauvegarde de la plus longue suite*******/
+    /************************************************/
+    override fun onStop() {
+        //avant de fermer l'application on cherche le fichier de préférence pour l'éditer
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+
+        //ajouter le couple "Score" avec sa valeur actuelle
+        editor.putString("score", bestScore.toString())
+
+        //enregistrer le fichier de préférérence
+        editor.apply()
+
+        super.onStop()
+    }
 
 }

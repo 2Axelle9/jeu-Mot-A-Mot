@@ -13,5 +13,6 @@
     <string name="secretWord">MOT SECRET</string>
     <string name="btn_play">Jouer à nouveau</string>
     <string name="btn_stop">Arrêter la partie</string>
+    <string name="bestScore">Meilleure suite\n5 mots</string>
 
 </resources>
