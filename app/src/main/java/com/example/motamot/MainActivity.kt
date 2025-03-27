@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         for (rowIndex in editTextGrid.indices) {
             for (colIndex in editTextGrid[rowIndex].indices) {
                 val editText = editTextGrid[rowIndex][colIndex]
+                //Log.e("axelle", "boucle qui parcourt les EditText")
                 editText.addTextChangedListener(object : TextWatcher {
 
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -76,24 +77,17 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onTextChanged(
-                        s: CharSequence,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        Log.e("axelle", "onTextChanged")
+                        s: CharSequence, start: Int, before: Int, count: Int) {
+                        //Log.e("axelle", "onTextChanged")
                         // Si le texte est rempli (taille 1) et ce n'est pas le dernier champ de la ligne
                         if (s.length == 1) {
-                            // Déplace le focus vers le champ suivant après un léger délai
-                            editTextGrid[rowIndex][colIndex + 1].post {
-                                editTextGrid[rowIndex][colIndex + 1].requestFocus()
-                            }
+                            editTextGrid[rowIndex][colIndex + 1].requestFocus()
                         }
                     }
 
                     override fun afterTextChanged(s: Editable?) {
-                        // Implémentation vide
                     }
+
                 })
             }
         }
@@ -119,21 +113,13 @@ class MainActivity : AppCompatActivity() {
         // Afficher la correction de la tentative
         updateGridUI(feedback)
 
-        // Vérifier si le mot est trouvé ou si la partie est terminée
-
+        // On verifie si la partie est terminée
         if (gameLogic.isWordGuessed(guess) || gameLogic.isGameOver()) {
-            val resultMessage: String = when {
-                gameLogic.isWordGuessed(guess) -> "Trouvé !"
-                gameLogic.isGameOver() -> "Dommage"
-                else -> "Erreur"
-            }
             val intent = Intent(this, EndGameActivity::class.java).apply {
-                putExtra("resultMessage", resultMessage)
-                putExtra("secretWord", gameLogic.secretWord)
+                putExtra("gameLogic", gameLogic)
             }
             startActivity(intent)
         }
-
         else {
             currentAttempt++
         }

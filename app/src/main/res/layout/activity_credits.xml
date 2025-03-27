@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/tvRules3"
-        android:layout_width="332dp"
-        android:layout_height="140dp"
+        android:layout_width="331dp"
+        android:layout_height="206dp"
         android:text="@string/credits"
         android:textAlignment="center"
         android:textColor="@color/dark_color"

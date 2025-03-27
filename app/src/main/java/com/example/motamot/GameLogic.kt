@@ -1,12 +1,12 @@
 package com.example.motamot
 
+import java.io.Serializable
 import kotlin.random.Random
 
 
 enum class CharFeedback { CORRECT, PRESENT, ABSENT }
 
-
-class GameLogic(val secretWord: String) {
+class GameLogic(val secretWord: String) : Serializable {
 
     private var attempts = 0
     private val maxAttempts = 6
