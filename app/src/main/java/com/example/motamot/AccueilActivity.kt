@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
 
+var score : Int = 0;
 var bestScore : Int = 0
 
 class AccueilActivity : AppCompatActivity() {
@@ -46,19 +47,19 @@ class AccueilActivity : AppCompatActivity() {
         }
 
 
-        // On cherchele fichier de préférence dans lequel la valeur de la plus longue suite de mot est stockée
+        // On cherche le fichier de préférence dans lequel la valeur de la plus longue suite de mot est stockée
         val preferences = PreferenceManager.getDefaultSharedPreferences (this)
         // extraire la valeur
-        val score = preferences. getString ("score", "")
+        val saveScore = preferences. getString ("bestScore", "")
         // si sa valeur n'est pas égale à "" (qui est la valeur par défault)
-        if (!score. equals("")) {
+        if (!saveScore. equals("")) {
             // alors on initialise la variable bestWordSequence avec cette valeur
-            bestScore = score?.toInt()!!
+            bestScore = saveScore?.toInt()!!
         } else {
             bestScore = 0
         }
         tvBestScore = findViewById(R.id.tvBestScore)
-        tvBestScore.setText("Meilleure suite\n" + tvBestScore.toString() + " mots")
+        tvBestScore.setText("Meilleure score\n" + bestScore.toString() + " mots de suite")
     }
 
     fun ouvrirMainActivity() {

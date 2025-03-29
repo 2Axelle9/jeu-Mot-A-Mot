@@ -45,9 +45,11 @@ class EndGameActivity : AppCompatActivity() {
             tvResult.text = "Dommage"
             btnPlay.text = "Rejouer"
             btnPlay.setOnClickListener {
+                score = 0
                 rejouer()
             }
         } else {
+            score += 1
             tvResult.text = "Trouvé !"
             btnPlay.text = "Continuer"
             btnPlay.setOnClickListener {
@@ -61,6 +63,7 @@ class EndGameActivity : AppCompatActivity() {
 
         btnStop = findViewById(R.id.btnStop)
         btnStop.setOnClickListener {
+            score = 0
             ouvrirAccueilActivity()
         }
 
@@ -110,21 +113,5 @@ class EndGameActivity : AppCompatActivity() {
 
 
 
-    /************************************************/
-    /*******Sauvegarde de la plus longue suite*******/
-    /************************************************/
-    override fun onStop() {
-        //avant de fermer l'application on cherche le fichier de préférence pour l'éditer
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = preferences.edit()
-
-        //ajouter le couple "Score" avec sa valeur actuelle
-        editor.putString("score", bestScore.toString())
-
-        //enregistrer le fichier de préférérence
-        editor.apply()
-
-        super.onStop()
-    }
 
 }

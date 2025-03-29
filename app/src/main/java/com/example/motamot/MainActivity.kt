@@ -20,6 +20,7 @@ import java.nio.file.Files.size
 
 
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var gameLogic: GameLogic
@@ -145,6 +146,33 @@ class MainActivity : AppCompatActivity() {
                 editText.isEnabled = false
             }
         }
+    }
+
+
+    /************************************************/
+    /*******Sauvegarde de la plus longue suite*******/
+    /************************************************/
+    override fun onStop() {
+        //avant de fermer l'application on cherche le fichier de préférence pour l'éditer
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+
+        Log.e("axelle", "bestScore = $bestScore")
+        Log.e("axelle", "score = $score")
+        if (score > bestScore) {
+            bestScore = score
+            //ajouter le couple "Score" avec sa valeur actuelle
+            editor.putString("bestScore", bestScore.toString())
+
+            //enregistrer le fichier de préférérence
+            editor.apply()
+            Log.e("axelle", "je sauvegarde le nouveau score $bestScore")
+        }
+        else{
+            Log.e("axelle", "je n'enregistre pas de nouveau score car $score <= $bestScore")
+        }
+
+        super.onStop()
     }
 
 }
