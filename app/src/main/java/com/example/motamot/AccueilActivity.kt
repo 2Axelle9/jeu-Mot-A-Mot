@@ -59,7 +59,7 @@ class AccueilActivity : AppCompatActivity() {
             bestScore = 0
         }
         tvBestScore = findViewById(R.id.tvBestScore)
-        tvBestScore.setText("Meilleure score\n" + bestScore.toString() + " mots de suite")
+        tvBestScore.setText("Meilleur score\n" + bestScore.toString() + " mots de suite")
     }
 
     fun ouvrirMainActivity() {

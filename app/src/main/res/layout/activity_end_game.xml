@@ -25,16 +25,16 @@
         android:id="@+id/btnPlay"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/contrast_color"
         android:text="@string/btn_play"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSecretWord" />
+        app:layout_constraintTop_toBottomOf="@+id/tvActualScore" />
 
     <TextView
         android:id="@+id/tvResult"
@@ -53,14 +53,28 @@
         android:id="@+id/tvSecretWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="60dp"
         android:text="@string/secretWord"
         android:textAlignment="center"
         android:textColor="@color/dark_color"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvResult" />
+
+    <TextView
+        android:id="@+id/tvActualScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/actualScore"
+        android:textAlignment="center"
+        android:textColor="@color/dark_color"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSecretWord" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

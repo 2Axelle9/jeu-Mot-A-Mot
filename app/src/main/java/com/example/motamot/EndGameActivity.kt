@@ -19,6 +19,7 @@ class EndGameActivity : AppCompatActivity() {
     private lateinit var tvSecretWord : TextView
     private lateinit var btnPlay : Button
     private lateinit var btnStop : Button
+    private lateinit var tvActualScore : TextView
 
     lateinit var capteurManager: CapteurManager
 
@@ -36,6 +37,7 @@ class EndGameActivity : AppCompatActivity() {
         gameLogic = intent.getSerializableExtra("gameLogic") as GameLogic // On récupère l'objet gameLogic qui a été envoyé à la page
 
         tvResult = findViewById(R.id.tvResult)
+        tvActualScore = findViewById(R.id.tvActualScore)
         btnPlay = findViewById(R.id.btnPlay)
 
         capteurManager = CapteurManager(this)
@@ -43,6 +45,7 @@ class EndGameActivity : AppCompatActivity() {
         // On regarde si le mot a été trouvé ou non
         if (gameLogic.isGameOver()) {
             tvResult.text = "Dommage"
+            tvActualScore.text = "Votre score\n $score"
             btnPlay.text = "Rejouer"
             btnPlay.setOnClickListener {
                 score = 0
@@ -51,6 +54,7 @@ class EndGameActivity : AppCompatActivity() {
         } else {
             score += 1
             tvResult.text = "Trouvé !"
+            tvActualScore.text = "Votre score actuel\n $score"
             btnPlay.text = "Continuer"
             btnPlay.setOnClickListener {
                 continuer()
