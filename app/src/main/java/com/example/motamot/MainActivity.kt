@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -27,11 +28,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gameLogic: GameLogic
     private lateinit var editTextGrid: List<List<EditText>>
     private var currentAttempt = 0
-    private val MAX_ATTEMPTS = 6
     private val WORD_LENGTH = 5
     private lateinit var btnValidate : Button
     private lateinit var btnHelp : Button
     private lateinit var btnQuit : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,10 @@ class MainActivity : AppCompatActivity() {
         navigator = Navigator(this) // On initialise le navigateur
 
         gameLogic = GameLogic(this) // On démarre une nouvelle partie
+
+        // Préparation de la grille
         setupEditTexts()
+        updateEditTextState()
 
         btnHelp = findViewById(R.id.btnHelp)
         btnHelp.setOnClickListener {
@@ -68,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Cette fonction initialise la grille en définissant les champs editText de chaque ligne (= tentative) dans une liste
+    /** Fonction qui initialise la grille en définissant les champs editText de chaque ligne (= tentative) dans une liste **/
     private fun setupEditTexts() {
         // Initialisation de la grille d'EditText
         editTextGrid = listOf(
@@ -83,11 +87,12 @@ class MainActivity : AppCompatActivity() {
         editTextGrid[0][0].requestFocus()
 
 
-        // Ajout du TextWatcher pour chaque EditText
+        // On parcours tous les EditText de notre grille
         for (rowIndex in editTextGrid.indices) {
             for (colIndex in editTextGrid[rowIndex].indices) {
                 val editText = editTextGrid[rowIndex][colIndex]
-                //Log.e("axelle", "boucle qui parcourt les EditText")
+
+                // Passage à l'EditText suivant après avoit entré une seule lettre
                 editText.addTextChangedListener(object : TextWatcher {
 
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -96,26 +101,32 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onTextChanged(
                         s: CharSequence, start: Int, before: Int, count: Int) {
-                        //Log.e("axelle", "onTextChanged")
-                        // Si le texte est rempli (taille 1) et ce n'est pas le dernier champ de la ligne
-                        if (s.length == 1) {
+                        // Si le texte est rempli (taille 1) et ce n'est pas le dernier champ de la ligne on passe au suivant
+                        if (s.length == 1 && colIndex < WORD_LENGTH - 1) {
                             editTextGrid[rowIndex][colIndex + 1].requestFocus()
                         }
                     }
-
                     override fun afterTextChanged(s: Editable?) {
                     }
 
                 })
+
+                // Validation de la tentative en appuyant sur la touche entrée
+                editText.setOnKeyListener { v, keyCode, event ->
+                    if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                        validateGuess()
+                        true
+                    } else {
+                        false
+                    }
+                }
             }
         }
     }
 
 
-    // Cette fonction est appelée à chaque tentative de l'utilisateur
+    /** fonction appelée après chaque tentative pour la vérifier */
     private fun validateGuess() {
-        if (currentAttempt >= MAX_ATTEMPTS) return
-
         // On récupère le mot entré par l'utilisateur
         val guess = editTextGrid[currentAttempt].joinToString("") { it.text.toString().uppercase() }
 
@@ -131,19 +142,22 @@ class MainActivity : AppCompatActivity() {
         // Afficher la correction de la tentative
         updateGridUI(feedback)
 
-        // On verifie si la partie est terminée
-        if (gameLogic.isWordGuessed(guess) || gameLogic.isGameOver()) {
+        // Si la partie est terminé on arrête la partie en passant à la page de fin de partie
+        if (gameLogic.isWordGuessed(guess) || gameLogic.isGameOver(guess)) {
             val intent = Intent(this, EndGameActivity::class.java).apply {
                 putExtra("gameLogic", gameLogic)
+                putExtra("lastGuess", guess)
             }
             startActivity(intent)
         }
-        else {
+        else { // Sinon on passe à la tentative suivante
             currentAttempt++
+            updateEditTextState()
         }
     }
 
-    // Cette fonction affiche la correction de la tentative de l'utilisateur
+
+    /** fonction qui affiche la correction de la tentative de l'utilisateur **/
     private fun updateGridUI(feedback: List<CharFeedback>) {
         for (i in feedback.indices) {
             val editText = editTextGrid[currentAttempt][i]
@@ -155,11 +169,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Cette fonction désactive tous les champs editText après la fin de la partie
+    /** fonction qui désactive tous les champs editText après la fin de la partie */
     private fun disableInputs() {
         for (row in editTextGrid) {
             for (editText in row) {
                 editText.isEnabled = false
+            }
+        }
+    }
+
+    /** Fonction qui modifie l'état des EditText (modifiable ou non)**/
+    private fun updateEditTextState() {
+        for (rowIndex in editTextGrid.indices) {
+            for (colIndex in editTextGrid[rowIndex].indices) {
+                editTextGrid[rowIndex][colIndex].isEnabled = rowIndex == currentAttempt // Seule la ligne de la tentative actuelle est modifiable
             }
         }
     }
@@ -187,7 +210,6 @@ class MainActivity : AppCompatActivity() {
         else{
             Log.d("axelle", "je n'enregistre pas de nouveau score car $score <= $bestScore")
         }
-
         super.onStop()
     }
 

@@ -97,6 +97,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -112,6 +113,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -127,6 +129,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -142,6 +145,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -157,6 +161,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>
@@ -182,6 +187,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -197,6 +203,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -212,6 +219,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -227,6 +235,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -242,6 +251,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>
@@ -267,6 +277,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -282,6 +293,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -297,6 +309,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -312,6 +325,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -327,6 +341,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>
@@ -352,6 +367,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -367,6 +383,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -382,6 +399,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -397,6 +415,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -412,6 +431,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>
@@ -436,6 +456,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -451,6 +472,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -466,6 +488,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -481,6 +504,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -496,6 +520,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>
@@ -520,6 +545,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -535,6 +561,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -550,6 +577,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -565,6 +593,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
 
@@ -580,6 +609,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_color"
                 android:textSize="48sp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
                 tools:text="a" />
 
         </LinearLayout>

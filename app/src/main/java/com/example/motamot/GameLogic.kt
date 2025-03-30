@@ -32,7 +32,6 @@ class GameLogic(context: Context) : Serializable {
         // On compte le nombre d'occurrences de chaque caractère dans le mot secret
         val secretCharCount = secretWord.groupingBy { it }.eachCount().toMutableMap()
 
-
         // On compare les lettres du mot de la tentative avec celles du mot secret
         for (i in guess.indices) {
             // Si la lettre est présente dans le mot secret et est bien placée, on met le feedback à CORRECT et on décrémente le compteur de la lettre dans le mot secret
@@ -46,7 +45,6 @@ class GameLogic(context: Context) : Serializable {
                 secretCharCount[guess[i]] = secretCharCount[guess[i]]!! - 1
             }
         }
-
         attempts++
         return feedback
     }
@@ -75,8 +73,8 @@ class GameLogic(context: Context) : Serializable {
         return guess == secretWord
     }
 
-    /*** Fonction qui vérifie si la partie est terminée **/
-    fun isGameOver(): Boolean {
-        return attempts >= maxAttempts
+    /*** Fonction qui vérifie si la partie est perdu**/
+    fun isGameOver(guess: String): Boolean {
+        return attempts >= maxAttempts && !isWordGuessed(guess)
     }
 }

@@ -15,6 +15,7 @@ class EndGameActivity : AppCompatActivity() {
 
     private lateinit var navigator: Navigator
     private lateinit var gameLogic: GameLogic
+    private lateinit var lastGuess: String
 
     private lateinit var tvResult : TextView
     private lateinit var tvSecretWord : TextView
@@ -38,6 +39,7 @@ class EndGameActivity : AppCompatActivity() {
         navigator = Navigator(this) // On initialise le navigateur
 
         gameLogic = intent.getSerializableExtra("gameLogic") as GameLogic // On récupère l'objet gameLogic qui a été envoyé à la page
+        lastGuess = intent.getStringExtra("lastGuess") ?: "" // On récupère le dernier mot proposé par l'utilisateur
 
         tvResult = findViewById(R.id.tvResult)
         tvActualScore = findViewById(R.id.tvActualScore)
@@ -46,7 +48,7 @@ class EndGameActivity : AppCompatActivity() {
         capteurManager = CapteurManager(this)
 
         // On regarde si le mot a été trouvé ou non
-        if (gameLogic.isGameOver()) {
+        if (gameLogic.isGameOver(lastGuess)) {
             tvResult.text = "Dommage"
             tvActualScore.text = "Votre score\n $score"
             btnPlay.text = "Rejouer"
