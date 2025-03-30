@@ -15,5 +15,7 @@
     <string name="btn_stop">Arrêter la partie</string>
     <string name="bestScore">Meilleur score\n5 mots</string>
     <string name="actualScore">Mon score actuel\n2 mots de suite</string>
+    <string name="help">\?</string>
+    <string name="quit">X</string>
 
 </resources>

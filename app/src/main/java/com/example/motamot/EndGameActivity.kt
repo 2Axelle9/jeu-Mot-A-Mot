@@ -13,6 +13,7 @@ import androidx.preference.PreferenceManager
 
 class EndGameActivity : AppCompatActivity() {
 
+    private lateinit var navigator: Navigator
     private lateinit var gameLogic: GameLogic
 
     private lateinit var tvResult : TextView
@@ -34,6 +35,8 @@ class EndGameActivity : AppCompatActivity() {
             insets
         }
 
+        navigator = Navigator(this) // On initialise le navigateur
+
         gameLogic = intent.getSerializableExtra("gameLogic") as GameLogic // On récupère l'objet gameLogic qui a été envoyé à la page
 
         tvResult = findViewById(R.id.tvResult)
@@ -49,7 +52,7 @@ class EndGameActivity : AppCompatActivity() {
             btnPlay.text = "Rejouer"
             btnPlay.setOnClickListener {
                 score = 0
-                rejouer()
+                navigator.navigateTo(MainActivity::class.java) // On retourne à la page de jeu
             }
         } else {
             score += 1
@@ -57,7 +60,7 @@ class EndGameActivity : AppCompatActivity() {
             tvActualScore.text = "Votre score actuel\n $score"
             btnPlay.text = "Continuer"
             btnPlay.setOnClickListener {
-                continuer()
+                navigator.navigateTo(MainActivity::class.java) // On retourne à la page de jeu
             }
         }
 
@@ -68,24 +71,9 @@ class EndGameActivity : AppCompatActivity() {
         btnStop = findViewById(R.id.btnStop)
         btnStop.setOnClickListener {
             score = 0
-            ouvrirAccueilActivity()
+            navigator.navigateTo(AccueilActivity::class.java)
         }
 
-    }
-
-    fun rejouer() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun continuer() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun ouvrirAccueilActivity() {
-        val intent = Intent(this, AccueilActivity::class.java)
-        startActivity(intent)
     }
 
 
@@ -108,11 +96,7 @@ class EndGameActivity : AppCompatActivity() {
 
     // Si le téléphone est secoué, on rejoue ou on continue
     fun motionDetected() {
-            if (gameLogic.isGameOver()) {
-                rejouer()
-            } else {
-                continuer()
-            }
+        navigator.navigateTo(MainActivity::class.java) // On retourne à la page de jeu
     }
 
 

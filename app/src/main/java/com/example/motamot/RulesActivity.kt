@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class RulesActivity : AppCompatActivity() {
 
+    private lateinit var navigator: Navigator
     private lateinit var btnBackRules : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,15 +23,19 @@ class RulesActivity : AppCompatActivity() {
             insets
         }
 
+        navigator = Navigator(this) // On initialise le navigateur
+
         btnBackRules = findViewById(R.id.btnBackRules)
         btnBackRules.setOnClickListener {
-            ouvrirAccueilActivity()
+            val fromMainActivity = intent.getBooleanExtra("fromMainActivity", false)
+            // Si on vient de MainActivity, on réutilise l'instance de MainActivity qui existe déjà
+            if (fromMainActivity) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                startActivity(intent)
+            } else { // Sinon on retourne à la page précédente
+                finish()
+            }
         }
-    }
-
-    fun ouvrirAccueilActivity() {
-        // lancer Activity Accueil
-        val intent = Intent(this, AccueilActivity::class.java)
-        startActivity(intent)
     }
 }

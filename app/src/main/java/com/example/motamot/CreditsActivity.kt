@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class CreditsActivity : AppCompatActivity() {
 
+    private lateinit var navigator: Navigator
     private lateinit var btnBackCredits: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,15 +23,11 @@ class CreditsActivity : AppCompatActivity() {
             insets
         }
 
+        navigator = Navigator(this) // On initialise le navigateur
+
         btnBackCredits = findViewById(R.id.btnBackCredits)
         btnBackCredits.setOnClickListener {
-            ouvrirAccueilActivity()
+            finish()
         }
-    }
-
-    fun ouvrirAccueilActivity() {
-        // lancer Activity Accueil
-        val intent = Intent(this, AccueilActivity::class.java)
-        startActivity(intent)
     }
 }

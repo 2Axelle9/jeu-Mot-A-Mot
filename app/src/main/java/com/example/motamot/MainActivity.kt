@@ -23,12 +23,15 @@ import java.nio.file.Files.size
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navigator: Navigator
     private lateinit var gameLogic: GameLogic
     private lateinit var editTextGrid: List<List<EditText>>
     private var currentAttempt = 0
     private val MAX_ATTEMPTS = 6
     private val WORD_LENGTH = 5
     private lateinit var btnValidate : Button
+    private lateinit var btnHelp : Button
+    private lateinit var btnQuit : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +43,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        navigator = Navigator(this) // On initialise le navigateur
+
         gameLogic = GameLogic("APPLE") // Exemple de mot à deviner
         setupEditTexts()
 
+        btnHelp = findViewById(R.id.btnHelp)
+        btnHelp.setOnClickListener {
+            //navigator.navigateTo(RulesActivity::class.java)
+            val intent = Intent(this, RulesActivity::class.java)
+            intent.putExtra("fromMainActivity", true) // On indique que l'activité d'origine est MainActivity
+            startActivity(intent)
+        }
+
+        btnQuit = findViewById(R.id.btnQuit)
+        btnQuit.setOnClickListener {
+            navigator.navigateTo(AccueilActivity::class.java)
+        }
 
         btnValidate = findViewById(R.id.btnValidate)
-
         btnValidate.setOnClickListener {
             validateGuess()
         }
@@ -149,16 +165,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    /************************************************/
-    /*******Sauvegarde de la plus longue suite*******/
-    /************************************************/
+    /************************************************************************/
+    /*******Sauvegarde du score (la plus longue suite de mots trouvés)*******/
+    /************************************************************************/
     override fun onStop() {
         //avant de fermer l'application on cherche le fichier de préférence pour l'éditer
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         val editor = preferences.edit()
 
-        Log.e("axelle", "bestScore = $bestScore")
-        Log.e("axelle", "score = $score")
+        Log.d("axelle", "bestScore = $bestScore")
+        Log.d("axelle", "score = $score")
         if (score > bestScore) {
             bestScore = score
             //ajouter le couple "Score" avec sa valeur actuelle
@@ -166,10 +182,10 @@ class MainActivity : AppCompatActivity() {
 
             //enregistrer le fichier de préférérence
             editor.apply()
-            Log.e("axelle", "je sauvegarde le nouveau score $bestScore")
+            Log.d("axelle", "je sauvegarde le nouveau score $bestScore")
         }
         else{
-            Log.e("axelle", "je n'enregistre pas de nouveau score car $score <= $bestScore")
+            Log.d("axelle", "je n'enregistre pas de nouveau score car $score <= $bestScore")
         }
 
         super.onStop()

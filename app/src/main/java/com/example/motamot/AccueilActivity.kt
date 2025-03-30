@@ -15,6 +15,7 @@ var bestScore : Int = 0
 
 class AccueilActivity : AppCompatActivity() {
 
+    private lateinit var navigator: Navigator
     private lateinit var btnStart : Button
     private lateinit var btnRules : Button
     private lateinit var btnCredits : Button
@@ -30,20 +31,21 @@ class AccueilActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        navigator = Navigator(this) // On initialise le navigateur
 
         btnStart = findViewById(R.id.btnStart)
         btnStart.setOnClickListener {
-            ouvrirMainActivity()
+            navigator.navigateTo(MainActivity::class.java)
         }
 
         btnRules = findViewById(R.id.btnRules)
         btnRules.setOnClickListener {
-            ouvrirRulesActivity()
+            navigator.navigateTo(RulesActivity::class.java)
         }
 
         btnCredits = findViewById(R.id.btnCredits)
         btnCredits.setOnClickListener {
-            ouvrirCreditsActivity()
+            navigator.navigateTo(CreditsActivity::class.java)
         }
 
 
@@ -60,23 +62,5 @@ class AccueilActivity : AppCompatActivity() {
         }
         tvBestScore = findViewById(R.id.tvBestScore)
         tvBestScore.setText("Meilleur score\n" + bestScore.toString() + " mots de suite")
-    }
-
-    fun ouvrirMainActivity() {
-        // lancer Activity Main
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun ouvrirRulesActivity() {
-        // lancer Activity Rules
-        val intent = Intent(this, RulesActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun ouvrirCreditsActivity() {
-        // lancer Activity Credits
-        val intent = Intent(this, CreditsActivity::class.java)
-        startActivity(intent)
     }
 }
