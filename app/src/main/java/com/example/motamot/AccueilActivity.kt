@@ -33,22 +33,25 @@ class AccueilActivity : AppCompatActivity() {
         }
         navigator = Navigator(this) // On initialise le navigateur
 
+        // Bouton pour démarrer le jeu
         btnStart = findViewById(R.id.btnStart)
         btnStart.setOnClickListener {
             navigator.navigateTo(MainActivity::class.java)
         }
 
+        // Bouton pour afficher les règles du jeu
         btnRules = findViewById(R.id.btnRules)
         btnRules.setOnClickListener {
             navigator.navigateTo(RulesActivity::class.java)
         }
 
+        // Bouton pour afficher les crédits
         btnCredits = findViewById(R.id.btnCredits)
         btnCredits.setOnClickListener {
             navigator.navigateTo(CreditsActivity::class.java)
         }
 
-
+        /**Affichage du meilleur score**/
         // On cherche le fichier de préférence dans lequel la valeur de la plus longue suite de mot est stockée
         val preferences = PreferenceManager.getDefaultSharedPreferences (this)
         // extraire la valeur

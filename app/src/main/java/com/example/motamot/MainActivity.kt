@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         navigator = Navigator(this) // On initialise le navigateur
 
-        gameLogic = GameLogic("APPLE") // Exemple de mot à deviner
+        gameLogic = GameLogic(this) // On démarre une nouvelle partie
         setupEditTexts()
 
         btnHelp = findViewById(R.id.btnHelp)
