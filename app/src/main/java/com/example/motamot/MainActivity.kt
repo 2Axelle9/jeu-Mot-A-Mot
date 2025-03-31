@@ -1,6 +1,7 @@
 package com.example.motamot
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -175,7 +176,10 @@ class MainActivity : AppCompatActivity() {
                     correctLetters[i] = editText.text.toString()[0] //On enregistre la lettre correcte pour l'afficher à la prochaine tenttative
                 }
                 CharFeedback.PRESENT -> editText.setBackgroundResource(R.color.present)
-                CharFeedback.ABSENT -> editText.setBackgroundResource(R.color.absent)
+                CharFeedback.ABSENT -> {
+                    editText.setBackgroundResource(R.color.absent)
+                    editText.paintFlags = editText.paintFlags or Paint.UNDERLINE_TEXT_FLAG // On souligne les lettres incorrectes
+                }
             }
         }
     }

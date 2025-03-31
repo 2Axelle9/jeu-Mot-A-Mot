@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mot à Mot</string>
     <string name="btn_start_text">Démarrer une partie</string>
-    <string name="btn_validate">Valider</string>
+    <string name="btn_validate">Valider la tentative</string>
     <string name="btn_rules">Règles du jeu</string>
     <string name="btn_back">Retour</string>
     <string name="rulesTitle">Règles du jeu</string>
