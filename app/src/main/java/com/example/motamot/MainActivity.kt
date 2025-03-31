@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnValidate : Button
     private lateinit var btnHelp : Button
     private lateinit var btnQuit : Button
+    private val correctLetters = MutableList(WORD_LENGTH) { ' ' }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,25 +97,32 @@ class MainActivity : AppCompatActivity() {
                 editText.addTextChangedListener(object : TextWatcher {
 
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                        // Implémentation vide
                     }
 
-                    override fun onTextChanged(
-                        s: CharSequence, start: Int, before: Int, count: Int) {
+                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                         // Si le texte est rempli (taille 1) et ce n'est pas le dernier champ de la ligne on passe au suivant
                         if (s.length == 1 && colIndex < WORD_LENGTH - 1) {
                             editTextGrid[rowIndex][colIndex + 1].requestFocus()
                         }
                     }
-                    override fun afterTextChanged(s: Editable?) {
+                    override fun afterTextChanged(s: Editable) {
                     }
 
                 })
 
-                // Validation de la tentative en appuyant sur la touche entrée
+
                 editText.setOnKeyListener { v, keyCode, event ->
+                    // Validation de la tentative en appuyant sur la touche entrée
                     if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                         validateGuess()
+                        true
+                    } else {
+                        false
+                    }
+                    // Effacement du texte de la case précédente et déplacement à cette case précédent en appuyant sur la touche retour (effacer)
+                    if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL && editText.text.isEmpty() && colIndex > 0) {
+                        editTextGrid[rowIndex][colIndex - 1].setText("")
+                        editTextGrid[rowIndex][colIndex - 1].requestFocus()
                         true
                     } else {
                         false
@@ -162,36 +170,33 @@ class MainActivity : AppCompatActivity() {
         for (i in feedback.indices) {
             val editText = editTextGrid[currentAttempt][i]
             when (feedback[i]) {
-                CharFeedback.CORRECT -> editText.setBackgroundResource(R.color.correct)
+                CharFeedback.CORRECT -> {
+                    editText.setBackgroundResource(R.color.correct)
+                    correctLetters[i] = editText.text.toString()[0] //On enregistre la lettre correcte pour l'afficher à la prochaine tenttative
+                }
                 CharFeedback.PRESENT -> editText.setBackgroundResource(R.color.present)
                 CharFeedback.ABSENT -> editText.setBackgroundResource(R.color.absent)
             }
         }
     }
 
-    /** fonction qui désactive tous les champs editText après la fin de la partie */
-    private fun disableInputs() {
-        for (row in editTextGrid) {
-            for (editText in row) {
-                editText.isEnabled = false
-            }
-        }
-    }
 
-    /** Fonction qui modifie l'état des EditText : modifiable ou non et affiche la premère lettre du mot**/
+    /** Fonction qui modifie l'état des EditText : éditable ou non, affiche les lettres trouvées et affiche la premère lettre du mot **/
     private fun updateEditTextState() {
-        // Désactivation des champs
+        // Désactivation des champs pour que seul la ligne de la tentative actuelle soit modifiable
         for (rowIndex in editTextGrid.indices) {
             for (colIndex in editTextGrid[rowIndex].indices) {
-                editTextGrid[rowIndex][colIndex].isEnabled = rowIndex == currentAttempt // Seule la ligne de la tentative actuelle est modifiable
-
+                editTextGrid[rowIndex][colIndex].isEnabled = rowIndex == currentAttempt
+                // Si la lettre correcte de cette position avait été trouvée lors des tenatives précédentes, on l'affiche
+                if (rowIndex == currentAttempt && correctLetters[colIndex] != ' ') {
+                    editTextGrid[rowIndex][colIndex].hint = correctLetters[colIndex].toString() // On affiche la lettre sous forme d'un "placeholder"
+                }
             }
         }
-
         // Afficher la première lettre du mot à chaque tentative
         val firstLetter = gameLogic.secretWord[0].toString()
         val firstEditText = editTextGrid[currentAttempt][0]
-        firstEditText.setText(firstLetter)
+        firstEditText.hint= firstLetter
     }
 
 
