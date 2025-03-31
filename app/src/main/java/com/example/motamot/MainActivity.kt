@@ -178,13 +178,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** Fonction qui modifie l'état des EditText (modifiable ou non)**/
+    /** Fonction qui modifie l'état des EditText : modifiable ou non et affiche la premère lettre du mot**/
     private fun updateEditTextState() {
+        // Désactivation des champs
         for (rowIndex in editTextGrid.indices) {
             for (colIndex in editTextGrid[rowIndex].indices) {
                 editTextGrid[rowIndex][colIndex].isEnabled = rowIndex == currentAttempt // Seule la ligne de la tentative actuelle est modifiable
+
             }
         }
+
+        // Afficher la première lettre du mot à chaque tentative
+        val firstLetter = gameLogic.secretWord[0].toString()
+        val firstEditText = editTextGrid[currentAttempt][0]
+        firstEditText.setText(firstLetter)
     }
 
 
