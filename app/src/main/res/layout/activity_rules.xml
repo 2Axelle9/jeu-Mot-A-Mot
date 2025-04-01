@@ -34,121 +34,104 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvRulesGoal"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/rules_goal"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_height="594dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRulesTitle">
 
-    <TextView
-        android:id="@+id/tvRulesPS"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/rules_ps"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="16sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackRules"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesMotivation" />
+        <TextView
+            android:id="@+id/tvRulesGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:text="@string/rules_goal"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvRulesMotivation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:text="@string/rules_motivation"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesAbsent" />
+        <TextView
+            android:id="@+id/tvColorCorrect"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="55dp"
+            android:background="@color/correct"
+            android:text="        " />
 
-    <TextView
-        android:id="@+id/tvRulesPresent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/rules_present"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvColorPresent" />
+        <TextView
+            android:id="@+id/tvRulesCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/rules_correct"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/tvColorCorrect"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="55dp"
-        android:background="@color/correct"
-        android:text="        "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesGoal" />
+        <TextView
+            android:id="@+id/tvColorPresent"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/present"
+            android:text="        " />
 
-    <TextView
-        android:id="@+id/tvColorPresent"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/present"
-        android:text="        "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesCorrect" />
+        <TextView
+            android:id="@+id/tvRulesPresent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/rules_present"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/tvColorAbsent"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/border"
-        android:text="        "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRulesPresent" />
+        <TextView
+            android:id="@+id/tvColorAbsent"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/border"
+            android:text="        " />
 
-    <TextView
-        android:id="@+id/tvRulesCorrect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/rules_correct"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvColorCorrect" />
+        <TextView
+            android:id="@+id/tvRulesAbsent"
+            android:layout_width="294dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/rules_absent"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/tvRulesAbsent"
-        android:layout_width="294dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/rules_absent"
-        android:textAlignment="center"
-        android:textColor="@color/dark_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvColorAbsent" />
+        <TextView
+            android:id="@+id/tvRulesMotivation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:text="@string/rules_motivation"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRulesPS"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:text="@string/rules_ps"
+            android:textAlignment="center"
+            android:textColor="@color/dark_color"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
