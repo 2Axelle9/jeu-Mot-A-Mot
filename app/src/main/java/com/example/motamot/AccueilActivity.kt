@@ -2,6 +2,7 @@ package com.example.motamot
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,7 @@ class AccueilActivity : AppCompatActivity() {
     private lateinit var btnRules : Button
     private lateinit var btnCredits : Button
     private lateinit var tvBestScore : TextView
+    private lateinit var formattedText : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +66,8 @@ class AccueilActivity : AppCompatActivity() {
             bestScore = 0
         }
         tvBestScore = findViewById(R.id.tvBestScore)
-        tvBestScore.setText("Meilleur score\n" + bestScore.toString() + " mots de suite")
+
+        formattedText = "<b>Meilleure série</b><br/>" + bestScore.toString() + " mot(s) de suite"
+        tvBestScore.setText(Html.fromHtml(formattedText));//Permet d'interpréter les balises HTML
     }
 }

@@ -20,7 +20,7 @@
     <string name="secretWord">MOT SECRET</string>
     <string name="btn_play">Jouer à nouveau</string>
     <string name="btn_stop">Arrêter la partie</string>
-    <string name="bestScore">Meilleure série\n5 mots</string>
+    <string name="bestScore"><b>Meilleure série</b>\n5 mots</string>
     <string name="actualScore">Mon score actuel\n2 mots de suite</string>
     <string name="help">\?</string>
     <string name="quit">X</string>

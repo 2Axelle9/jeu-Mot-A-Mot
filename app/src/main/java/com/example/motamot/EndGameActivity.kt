@@ -2,6 +2,7 @@ package com.example.motamot
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -22,6 +23,7 @@ class EndGameActivity : AppCompatActivity() {
     private lateinit var btnPlay : Button
     private lateinit var btnStop : Button
     private lateinit var tvActualScore : TextView
+    private lateinit var formattedText : String
 
     lateinit var capteurManager: CapteurManager
 
@@ -50,7 +52,6 @@ class EndGameActivity : AppCompatActivity() {
         // On regarde si le mot a été trouvé ou non
         if (gameLogic.isGameOver(lastGuess)) {
             tvResult.text = "Dommage"
-            tvActualScore.text = "Votre score\n $score"
             btnPlay.text = "Rejouer"
             btnPlay.setOnClickListener {
                 score = 0
@@ -59,12 +60,16 @@ class EndGameActivity : AppCompatActivity() {
         } else {
             score += 1
             tvResult.text = "Trouvé !"
-            tvActualScore.text = "Votre score actuel\n $score"
             btnPlay.text = "Continuer"
             btnPlay.setOnClickListener {
                 navigator.navigateTo(MainActivity::class.java) // On retourne à la page de jeu
             }
         }
+
+        //On affiche le score actuel
+        formattedText = "<b>Votre score </b><br/>" + score
+        tvActualScore.text = Html.fromHtml(formattedText) //Permet d'interpréter les balises HTML
+
 
         // On affiche le mot qui était à deviner
         tvSecretWord = findViewById(R.id.tvSecretWord)
