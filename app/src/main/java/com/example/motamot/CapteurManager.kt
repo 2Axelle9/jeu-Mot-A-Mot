@@ -18,9 +18,10 @@ class CapteurManager  (pContext: EndGameActivity): SensorEventListener {
         if (event?.sensor?.type == Sensor.TYPE_GYROSCOPE){
             val yRotationRate = event.values[1]
             val xRotationRate = event.values[0]
+            // Si mouvement de l'appareil (inclinaison avant/arrière et gauche/droite) détecté
             if (yRotationRate > 2.0 || xRotationRate >2.0){
                 Log.d("axelle", "Mouvement détecté")
-                context.motionDetected()
+                context.motionDetected() // On appelle la fonction motionDetected de l'activité context (endGameActivity)
             }
         }
     }
@@ -31,13 +32,13 @@ class CapteurManager  (pContext: EndGameActivity): SensorEventListener {
 
 
     fun start() {
-        sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL) // Lorsque l'activity est lancée détecte le gyroscope
         Log.d("axelle", "sensor started")
     }
 
 
     fun stop() {
-        sensorManager.unregisterListener(this)
+        sensorManager.unregisterListener(this) // Lorsque l'activity est en pause on arrête de détecter les capteurs
         Log.d("axelle", "sensors stopped")
     }
 }
